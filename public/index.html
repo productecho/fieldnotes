@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f7f7f3" />
+    <meta name="description" content="A community feedback board. Share what would make your work easier and vote on ideas." />
+    <title>Fieldnotes — Product feedback</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+    <script type="module" src="/app.js"></script>
+  </head>
+  <body>
+    <header class="topbar"><a class="brand" href="/"><span class="brand-mark">f.</span><span>fieldnotes<span class="brand-dot">.</span></span></a><div class="topbar-right"><span class="live-dot"></span><span>Community board</span><button class="button button-dark button-small" id="open-form-top">Share an idea <span aria-hidden="true">↗</span></button></div></header>
+    <main>
+      <section class="hero">
+        <div class="hero-copy"><div class="eyebrow"><span class="eyebrow-line"></span> A PRODUCT THAT LISTENS</div><h1>Good ideas<br />make things <em>better.</em></h1><p class="hero-description">Tell us what would make your day easier. Vote for ideas you love. We’re building this together.</p><button class="button button-accent" id="open-form-hero">Share an idea <span aria-hidden="true">↗</span></button><div class="hero-note"><span class="avatar-stack"><i>J</i><i>M</i><i>A</i></span><span>Your voice helps shape what we build next.</span></div></div>
+        <div class="hero-art" aria-label="Illustration of a pinned feedback note"><div class="art-grid"></div><div class="note-card"><div class="note-top"><span class="note-label">A THOUGHT FOR THE TEAM</span><span class="note-spark">✳</span></div><div class="note-title">Make the small<br />things feel easy.</div><div class="note-rule"></div><div class="note-bottom"><span>YOUR IDEA, OUR NEXT STEP</span><span class="note-arrow">↗</span></div></div><div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div><div class="art-stamp">BUILT<br />TOGETHER</div></div>
+      </section>
+      <section class="board-section" id="board">
+        <div class="section-heading"><div><div class="eyebrow"><span class="eyebrow-line"></span> THE COMMUNITY BOARD</div><h2>What should we work on?</h2><p class="section-description">Browse the ideas, add your vote, or bring a new one to the table.</p></div><div class="board-count"><strong id="idea-count">—</strong><span>ideas<br />and counting</span></div></div>
+        <div class="board-toolbar"><div class="filter-tabs" role="group" aria-label="Filter ideas by status"><button class="filter-tab active" data-status="all">All ideas</button><button class="filter-tab" data-status="under_review">In review</button><button class="filter-tab" data-status="planned">Planned</button><button class="filter-tab" data-status="in_progress">In progress</button><button class="filter-tab" data-status="shipped">Shipped</button></div><label class="sort-select"><span class="sr-only">Filter by category</span><select id="category-filter"><option value="all">All categories</option><option>Workflow</option><option>Integrations</option><option>Reporting</option><option>Other</option></select><span aria-hidden="true">⌄</span></label></div>
+        <div class="idea-list" id="idea-list" aria-live="polite"><div class="loading-card">Gathering the good ideas<span class="loading-dots">···</span></div></div>
+        <div class="board-bottom"><span>Have a thought? We’re listening.</span><button class="text-button" id="open-form-bottom">Add your idea <span aria-hidden="true">↗</span></button></div>
+      </section>
+      <section class="closing"><div class="closing-mark">✳</div><p>Better work starts with a conversation.</p><button class="button button-light" id="open-form-closing">Share yours <span aria-hidden="true">↗</span></button></section>
+    </main>
+    <footer><a class="brand brand-footer" href="/"><span class="brand-mark">f.</span><span>fieldnotes<span class="brand-dot">.</span></span></a><span class="footer-credit">A <a href="https://app.productecho.com" target="_blank" rel="noopener noreferrer">ProductEcho</a> sample app, built with care.</span><span class="footer-status"><i></i> Powered by PostgreSQL</span></footer>
+    <dialog id="idea-dialog" class="dialog"><form id="idea-form" class="dialog-card"><button type="button" class="dialog-close" id="close-dialog" aria-label="Close">×</button><div class="eyebrow"><span class="eyebrow-line"></span> YOUR TURN</div><h2>What’s on your mind?</h2><p class="dialog-intro">A small idea can make a big difference. Tell us what you’d love to see.</p><label class="field-label" for="idea-title">Give it a short title</label><input id="idea-title" name="title" maxlength="100" minlength="6" placeholder="e.g. Let me save a view for later" required /><div class="field-meta"><span>Make it clear and specific</span><span id="title-count">0 / 100</span></div><label class="field-label" for="idea-description">Tell us a little more</label><textarea id="idea-description" name="description" maxlength="600" minlength="12" rows="4" placeholder="What are you trying to do? How would this help?" required></textarea><div class="field-meta"><span>12–600 characters</span><span id="description-count">0 / 600</span></div><label class="field-label" for="idea-category">Choose a category</label><select id="idea-category" name="category" required><option value="" disabled selected>Select one</option><option>Workflow</option><option>Integrations</option><option>Reporting</option><option>Other</option></select><p class="form-error" id="form-error" role="alert"></p><div class="dialog-actions"><button type="button" class="button button-quiet" id="cancel-dialog">Maybe later</button><button class="button button-accent" type="submit">Add to the board <span aria-hidden="true">↗</span></button></div></form></dialog>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>

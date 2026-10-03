@@ -1,0 +1,30 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: feedback_board
+      POSTGRES_USER: feedback
+      POSTGRES_PASSWORD: feedback
+    ports:
+      - "5432:5432"
+    volumes:
+      - feedback_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U feedback -d feedback_board"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+  app:
+    build: .
+    environment:
+      PORT: 3000
+      DATABASE_URL: postgres://feedback:feedback@db:5432/feedback_board
+      NODE_ENV: production
+      ADMIN_KEY: local-demo-admin-key
+    ports:
+      - "3000:3000"
+    depends_on:
+      db:
+        condition: service_healthy
+volumes:
+  feedback_data:
